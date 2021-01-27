@@ -5,41 +5,38 @@ using namespace std;
 class Solution {
 private: 
 	vector<vector<int> >& edges;
-	verctor<int> used; 
+	vector<int> used; 
 public:
     int makeConnected(int n, vector<vector<int> >& connections) {
-		// Á¬Í¨Í¼×îÉÙÓĞn-1Ìõ±ß 
+		// è¿é€šå›¾æœ€å°‘æœ‰n-1æ¡è¾¹ 
 		if(connections.size() < n-1){
 			return -1;
 		}
-		
-		int record[n];
-		// ¶¨ÒåÍâ²ã´óĞ¡ 
+		// å®šä¹‰å¤–å±‚å¤§å° 
 		edges.resize(n);
 	    for (auto& conn: connections) {
-	    	// ÎŞÏòÍ¼ 
-	    	// Ïàµ±ÓÚÁÚ½Ó±íÒ»ÑùµÄ¶¯Ì¬½á¹¹£¬¼õÉÙ¿Õ¼ä¸´ÔÓ¶È 
+		    // æ— å‘å›¾ 
+			// ç›¸å½“äºé‚»æ¥è¡¨ä¸€æ ·çš„åŠ¨æ€ç»“æ„ï¼Œå‡å°‘ç©ºé—´å¤æ‚åº¦
             edges[conn[0]].push_back(conn[1]); 
-            edges[conn[1]].push_back([conn[0]);
+            edges[conn[1]].push_back(conn[0]);
         }
         
 		used.resize(n);
 		int ants = 0; 
 		for(int i=0;i<n;i++){
 			if(used[i]!=1){
-				// ´ÓÎ´±»·ÃÎÊ¹ı½Úµã¿ªÊ¼DFS 
+				// // ä»æœªè¢«è®¿é—®è¿‡èŠ‚ç‚¹å¼€å§‹DFS 
 				DFS(i);
-				// Í³¼ÆDFSµÄ´ÎÊı
-				// Èç¹ûÃ»ÓĞ¹ÂÁ¢µã£¬Á¬Í¨Í¼Ò»´ÎDFS¾ÍÄÜ·ÃÎÊËùÓĞ½Úµã£¬Ôòants=1ÎŞĞè¶îÍâ²Ù×÷
-				// Á½´ÎDFS ËµÃ÷Í¼ÖÁÉÙÓĞÒ»¸ö¹ÂÁ¢µã£¬ÖÁÉÙĞèÒªÒ»Ìõ±ß 
+				/// ç»Ÿè®¡DFSçš„æ¬¡æ•°
+				// å¦‚æœæ²¡æœ‰å­¤ç«‹ç‚¹ï¼Œè¿é€šå›¾ä¸€æ¬¡DFSå°±èƒ½è®¿é—®æ‰€æœ‰èŠ‚ç‚¹ï¼Œåˆ™ants=1æ— éœ€é¢å¤–æ“ä½œ
+				// ä¸¤æ¬¡DFS è¯´æ˜å›¾è‡³å°‘æœ‰ä¸€ä¸ªå­¤ç«‹ç‚¹ï¼Œè‡³å°‘éœ€è¦ä¸€æ¡è¾¹
 				ants++; 
 			}	
 		}
 		return ants - 1; 	
 		}
 		
-    }
-    //Éî¶ÈÓÅÏÈ±éÀú 
+    //æ·±åº¦ä¼˜å…ˆéå†
     void DFS(int u) {
     	// visit(v) 
     	used[u] = 1;
@@ -50,4 +47,3 @@ public:
 		}
 	}
 };
-
