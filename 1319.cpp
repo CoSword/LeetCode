@@ -4,7 +4,7 @@ using namespace std;
 
 class Solution {
 private: 
-	vector<vector<int> >& edges;
+	vector<vector<int>> edges;
 	vector<int> used; 
 public:
     int makeConnected(int n, vector<vector<int> >& connections) {
@@ -20,7 +20,7 @@ public:
             edges[conn[0]].push_back(conn[1]); 
             edges[conn[1]].push_back(conn[0]);
         }
-        
+         
 		used.resize(n);
 		int ants = 0; 
 		for(int i=0;i<n;i++){
